@@ -1,0 +1,28 @@
+{
+    "name": "zfleaves-monitor-shared",
+    "version": "0.0.1",
+    "description": "前端稳定性监控 共享参数",
+    "main": "dist/index.global.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "unpkg": "dist/index.global.js",
+    "scripts": {
+      "build": "encode-bundle src/index.ts --format iife,cjs,esm --dts --minify --global-name zfleavesMonitor",
+      "clean": "rimraf dist node_modules"
+    },
+    "files": [
+      "dist",
+      "README.md"
+    ],
+    "keywords": [
+      "encode",
+      "monitor",
+      "shared"
+    ],
+    "author": "zfleaves",
+    "license": "ISC",
+    "devDependencies": {
+      "encode-bundle": "^1.4.1"
+    }
+  }
+  
