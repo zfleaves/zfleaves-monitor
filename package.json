@@ -5,6 +5,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "clean": "pnpm -r --filter=./packages/* run clean",
+    "init": "pnpm install",
     "build": "pnpm run init && pnpm -r --filter=./packages/* run build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
     "pub": "pnpm run build && pnpm -r --filter=./packages/* publish",
