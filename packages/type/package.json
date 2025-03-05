@@ -11,8 +11,12 @@
     "clean": "rimraf dist node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "keywords": [
-    "encode",
+    "zfleaves",
     "monitor",
     "type"
   ],

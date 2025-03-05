@@ -1,7 +1,7 @@
 {
-    "name": "zfleaves-monitor-core",
+    "name": "zfleaves-monitor-browser",
     "version": "0.0.1",
-    "description": "前端稳定性监控 核心功能",
+    "description": "前端稳定性监控 页面监控",
     "main": "dist/index.global.js",
     "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "keywords": [
         "zfleaves",
         "monitor",
-        "core"
+        "browser"
     ],
     "author": "zfleaves",
     "license": "ISC",
@@ -28,6 +28,7 @@
     "dependencies": {
         "zfleaves-monitor-shared": "workspace:^",
         "zfleaves-monitor-type": "workspace:^",
-        "zfleaves-monitor-utils": "workspace:^"
+        "zfleaves-monitor-utils": "workspace:^",
+        "zfleaves-monitor-core": "workspace:^"
     }
 }
