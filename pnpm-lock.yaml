@@ -122,6 +122,25 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
 
+  packages/vue:
+    dependencies:
+      zfleaves-monitor-core:
+        specifier: workspace:^
+        version: link:../core
+      zfleaves-monitor-shared:
+        specifier: workspace:^
+        version: link:../shared
+      zfleaves-monitor-type:
+        specifier: workspace:^
+        version: link:../type
+      zfleaves-monitor-utils:
+        specifier: workspace:^
+        version: link:../utils
+    devDependencies:
+      encode-bundle:
+        specifier: ^1.4.1
+        version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
+
 packages:
 
   '@babel/runtime@7.26.9':
