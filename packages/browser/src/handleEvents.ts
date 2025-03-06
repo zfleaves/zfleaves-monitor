@@ -14,7 +14,7 @@ import {
     extractErrorStack,
     unknownToString,
     Severity,
-} from 'encode-monitor-utils';
+} from 'zfleaves-monitor-utils';
 import { ReportDataType, Replace, MonitorHttp, ResourceErrorTarget } from 'zfleaves-monitor-type';
 import { url } from 'inspector';
 
