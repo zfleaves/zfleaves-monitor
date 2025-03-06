@@ -160,6 +160,22 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
 
+  packages/web:
+    dependencies:
+      zfleaves-monitor-browser:
+        specifier: workspace:^
+        version: link:../browser
+      zfleaves-monitor-react:
+        specifier: workspace:^
+        version: link:../react
+      zfleaves-monitor-vue:
+        specifier: workspace:^
+        version: link:../vue
+    devDependencies:
+      encode-bundle:
+        specifier: ^1.4.1
+        version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
+
 packages:
 
   '@babel/runtime@7.26.9':
