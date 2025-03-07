@@ -49,6 +49,9 @@ const HandleEvents = {
     },
     /**
      * 处理window的error的监听回调
+     * 主要用于捕获同步代码中未被捕获的错误，这些错误可能来自于 
+     * JavaScript 代码的语法错误、运行时错误（如变量未定义、函数调用错误等），
+     * 以及资源加载失败（如图片、脚本文件加载失败）
      */
     handleError(errorEvent: ErrorEvent) {
         const target = errorEvent.target as ResourceErrorTarget;
@@ -145,7 +148,12 @@ const HandleEvents = {
             onRouteChange(from, to);
         }
     },
-
+    /**
+     * 处理未处理的 Promise 拒绝事件
+     * @param ev - PromiseRejectionEvent 事件对象，包含 Promise 拒绝的相关信息
+     * window.onunhandledrejection：专门用于捕获未被处理的 Promise 拒绝事件。
+     * 当一个 Promise 被拒绝（rejected），但没有相应的 .catch() 方法来处理这个拒绝时，就会触发该事件。
+     */
     handleUnhandledrejection(ev: PromiseRejectionEvent) {
         let data: ReportDataType = {
             type: ErrorTypes.PROMISE_ERROR,

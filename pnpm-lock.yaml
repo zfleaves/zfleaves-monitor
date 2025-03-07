@@ -176,6 +176,28 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
 
+  packages/web-performance:
+    dependencies:
+      core-js:
+        specifier: ^3.19.1
+        version: 3.41.0
+      path-to-regexp:
+        specifier: ^6.2.0
+        version: 6.3.0
+      zfleaves-monitor-browser:
+        specifier: workspace:^
+        version: link:../browser
+      zfleaves-monitor-react:
+        specifier: workspace:^
+        version: link:../react
+      zfleaves-monitor-vue:
+        specifier: workspace:^
+        version: link:../vue
+    devDependencies:
+      encode-bundle:
+        specifier: ^1.4.1
+        version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
+
 packages:
 
   '@babel/runtime@7.26.9':
@@ -671,6 +693,9 @@ packages:
   cookie@0.7.1:
     resolution: {integrity: sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w==}
     engines: {node: '>= 0.6'}
+
+  core-js@3.41.0:
+    resolution: {integrity: sha512-SJ4/EHwS36QMJd6h/Rg+GyR4A5xE0FSI3eZ+iBVpfqf1x0eTSg1smWLHrA+2jQThZSh97fmSgFSU8B61nxosxA==}
 
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -1196,6 +1221,9 @@ packages:
 
   path-to-regexp@0.1.12:
     resolution: {integrity: sha512-RA1GjUVMnvYFxuqovrEqZoxxW5NUZqbwKtYz/Tt7nXerk0LbLblQmrsgdeOxV5SFHf0UDggjS/bSeOZwt1pmEQ==}
+
+  path-to-regexp@6.3.0:
+    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
   path-type@4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
@@ -2034,6 +2062,8 @@ snapshots:
 
   cookie@0.7.1: {}
 
+  core-js@3.41.0: {}
+
   create-require@1.1.1: {}
 
   cross-env@7.0.3:
@@ -2558,6 +2588,8 @@ snapshots:
       minipass: 7.1.2
 
   path-to-regexp@0.1.12: {}
+
+  path-to-regexp@6.3.0: {}
 
   path-type@4.0.0: {}
 

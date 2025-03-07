@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>腾讯音乐 dom树BFS遍历面试题</title>
+</head>
+
+<body>
+    <div class="root">
+        <div class="container">
+            <section class="sidebar">
+                <ul class="menu"></ul>
+            </section>
+            <section class="main">
+                <article class="post"></article>
+                <p class="copyright"></p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function traverse(selector) {
+            const root = document.querySelector(selector);
+            if (!root) return;
+
+            const queue = [root];
+
+            while (queue.length > 0) {
+                const currentElement = queue.shift();
+                const tagName = currentElement.tagName;
+                const className = currentElement.className;
+                const output = className ? `${tagName} .${className}` : tagName;
+                console.log(output);
+
+                // 将子元素按顺序加入队列
+                const children = currentElement.children;
+                for (let i = 0; i < children.length; i++) {
+                    queue.push(children[i]);
+                }
+            }
+        }
+        traverse('.root');
+    </script>
+</body>
+
+</html>
