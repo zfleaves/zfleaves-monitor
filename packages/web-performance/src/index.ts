@@ -45,17 +45,6 @@ class WebVitals implements IWebVitals {
     constructor(config: IConfig) {
         // 从配置对象中解构出所需的参数，并设置默认值
         const {
-
-
-
-
-
-
-
-
-
-
-
             appId, // 应用的唯一标识符
             version, // 应用的版本号
             reportCallback, // 报告回调函数，用于处理性能指标的报告
