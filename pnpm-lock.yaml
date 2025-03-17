@@ -109,6 +109,16 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
 
+  packages/tools:
+    dependencies:
+      zfleaves-monitor-shared:
+        specifier: 0.0.1
+        version: 0.0.1
+    devDependencies:
+      encode-bundle:
+        specifier: ^1.4.1
+        version: 1.4.1(@swc/core@1.11.6)(ts-node@9.1.1(typescript@5.8.2))(typescript@5.8.2)
+
   packages/type:
     dependencies:
       zfleaves-monitor-core:
@@ -1591,6 +1601,9 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
 
+  zfleaves-monitor-shared@0.0.1:
+    resolution: {integrity: sha512-sLTRc2fpo6NzqUPiocXblSKAiWI4oIidKEeXYIzjscrm3l9GJMoyg1rlBIbRlWPiTFSpFdxPTv4jg6hJVV0y+g==}
+
 snapshots:
 
   '@babel/runtime@7.26.9':
@@ -2944,3 +2957,5 @@ snapshots:
       yargs-parser: 20.2.9
 
   yn@3.1.1: {}
+
+  zfleaves-monitor-shared@0.0.1: {}
