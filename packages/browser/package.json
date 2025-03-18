@@ -1,6 +1,6 @@
 {
     "name": "zfleaves-monitor-browser",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "前端稳定性监控 页面监控",
     "main": "dist/index.global.js",
     "module": "dist/index.mjs",
@@ -26,9 +26,7 @@
         "encode-bundle": "^1.4.1"
     },
     "dependencies": {
-        "zfleaves-monitor-shared": "workspace:^",
-        "zfleaves-monitor-type": "workspace:^",
-        "zfleaves-monitor-utils": "workspace:^",
-        "zfleaves-monitor-core": "workspace:^"
+        "zfleaves-monitor-shared": "0.0.1",
+        "zfleaves-monitor-tools": "0.0.1"
     }
 }

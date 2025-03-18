@@ -1,23 +1,4 @@
 import { BreadCrumbTypes, ErrorTypes } from "zfleaves-monitor-shared";
-import {
-    breadcrumb,
-    handleConsole,
-    httpTransform,
-    transportData,
-    options as sdkOptions
-} from "zfleaves-monitor-core";
-import { ReportDataType, Replace, MonitorHttp } from "zfleaves-monitor-type";
-import {
-    extractErrorStack,
-    getCurrentRoute,
-    getTimestamp,
-    isError,
-    isHttpFail,
-    parseErrorString,
-    unknownToString,
-    _support,
-    Severity,
-} from "zfleaves-monitor-utils";
 import { getWxMiniDeviceInfo, targetAsString } from "./utils";
 import {
     MiniRoute,
@@ -26,6 +7,18 @@ import {
     WxOnTabItemTapBreadcrumb,
 } from './types';
 import { EListenerTypes } from './constant';
+import { core, utils, types } from "zfleaves-monitor-tools";
+const { breadcrumb, handleConsole, httpTransform, transportData, options: sdkOptions } = core;
+const {
+    extractErrorStack, 
+    getCurrentRoute, 
+    getTimestamp, 
+    isError, isHttpFail, 
+    parseErrorString, 
+    unknownToString, 
+    _support, 
+    Severity,
+} = utils;
 
 const HandleWxAppEvents = {
     /**
@@ -85,7 +78,7 @@ const HandleWxAppEvents = {
     */
     onerror(error: string) {
         const parsedError = parseErrorString(error);
-        const data: ReportDataType = {
+        const data: types.ReportDataType = {
             ...parsedError,
             time: getTimestamp(),
             level: Severity.Normal,
@@ -107,7 +100,7 @@ const HandleWxAppEvents = {
     * @param ev - 未处理的 Promise 拒绝事件的回调结果，包含拒绝原因等信息
     */
     onunhandledrejection(ev: WechatMiniprogram.OnUnhandledRejectionCallbackResult) {
-        let data: ReportDataType = {
+        let data: types.ReportDataType = {
             type: ErrorTypes.PROMISE_ERROR,
             message: unknownToString(ev.reason),
             url: getCurrentRoute(),
@@ -290,7 +283,7 @@ const HandleWxPageEvents = {
 }
 
 const HandleWxConsoleEvents = {
-    console(data: Replace.TriggerConsole) {
+    console(data: types.Replace.TriggerConsole) {
         handleConsole(data);
     },
 }
@@ -301,7 +294,7 @@ const HandleNetworkEvents = {
      * 该函数接收一个网络请求的数据对象，对其进行转换和处理，并根据请求状态记录面包屑和上报错误信息
      * @param data - 网络请求的数据对象，包含请求的相关信息
      */
-    handleRequest(data: MonitorHttp): void {
+    handleRequest(data: types.MonitorHttp): void {
         const result = httpTransform(data);
         result.url = getCurrentRoute();
         if (data.status === undefined) {

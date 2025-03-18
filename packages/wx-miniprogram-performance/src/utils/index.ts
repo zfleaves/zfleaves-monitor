@@ -1,6 +1,6 @@
-import { setUrlQuery, variableTypeDetection, generateUUID } from "zfleaves-monitor-utils";
 import { STORAGE_KEY } from '../constant';
-
+import { utils } from "zfleaves-monitor-tools";
+const { setUrlQuery, variableTypeDetection, generateUUID } = utils;
 /**
  * 空函数，不执行任何操作
  * 通常用于占位或作为默认回调函数

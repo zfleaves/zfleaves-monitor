@@ -51,18 +51,12 @@ importers:
 
   packages/browser:
     dependencies:
-      zfleaves-monitor-core:
-        specifier: workspace:^
-        version: link:../core
       zfleaves-monitor-shared:
-        specifier: workspace:^
-        version: link:../shared
-      zfleaves-monitor-type:
-        specifier: workspace:^
-        version: link:../type
-      zfleaves-monitor-utils:
-        specifier: workspace:^
-        version: link:../utils
+        specifier: 0.0.1
+        version: 0.0.1
+      zfleaves-monitor-tools:
+        specifier: 0.0.1
+        version: 0.0.1
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -86,18 +80,12 @@ importers:
 
   packages/react:
     dependencies:
-      zfleaves-monitor-core:
-        specifier: workspace:^
-        version: link:../core
       zfleaves-monitor-shared:
-        specifier: workspace:^
-        version: link:../shared
-      zfleaves-monitor-type:
-        specifier: workspace:^
-        version: link:../type
-      zfleaves-monitor-utils:
-        specifier: workspace:^
-        version: link:../utils
+        specifier: 0.0.1
+        version: 0.0.1
+      zfleaves-monitor-tools:
+        specifier: 0.0.1
+        version: 0.0.1
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -153,18 +141,12 @@ importers:
 
   packages/vue:
     dependencies:
-      zfleaves-monitor-core:
-        specifier: workspace:^
-        version: link:../core
       zfleaves-monitor-shared:
-        specifier: workspace:^
-        version: link:../shared
-      zfleaves-monitor-type:
-        specifier: workspace:^
-        version: link:../type
-      zfleaves-monitor-utils:
-        specifier: workspace:^
-        version: link:../utils
+        specifier: 0.0.1
+        version: 0.0.1
+      zfleaves-monitor-tools:
+        specifier: 0.0.1
+        version: 0.0.1
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -173,14 +155,14 @@ importers:
   packages/web:
     dependencies:
       zfleaves-monitor-browser:
-        specifier: workspace:^
-        version: link:../browser
+        specifier: 0.0.3
+        version: 0.0.3
       zfleaves-monitor-react:
-        specifier: workspace:^
-        version: link:../react
+        specifier: 0.0.3
+        version: 0.0.3
       zfleaves-monitor-vue:
-        specifier: workspace:^
-        version: link:../vue
+        specifier: 0.0.3
+        version: 0.0.3
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -194,15 +176,6 @@ importers:
       path-to-regexp:
         specifier: ^6.2.0
         version: 6.3.0
-      zfleaves-monitor-browser:
-        specifier: workspace:^
-        version: link:../browser
-      zfleaves-monitor-react:
-        specifier: workspace:^
-        version: link:../react
-      zfleaves-monitor-vue:
-        specifier: workspace:^
-        version: link:../vue
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -210,24 +183,18 @@ importers:
 
   packages/wx-miniprogram:
     dependencies:
-      zfleaves-monitor-core:
-        specifier: workspace:^
-        version: link:../core
       zfleaves-monitor-react:
-        specifier: workspace:^
-        version: link:../react
+        specifier: 0.0.3
+        version: 0.0.3
       zfleaves-monitor-shared:
-        specifier: workspace:^
-        version: link:../shared
-      zfleaves-monitor-type:
-        specifier: workspace:^
-        version: link:../type
-      zfleaves-monitor-utils:
-        specifier: workspace:^
-        version: link:../utils
+        specifier: 0.0.1
+        version: 0.0.1
+      zfleaves-monitor-tools:
+        specifier: 0.0.1
+        version: 0.0.1
       zfleaves-monitor-vue:
-        specifier: workspace:^
-        version: link:../vue
+        specifier: 0.0.3
+        version: 0.0.3
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -235,15 +202,9 @@ importers:
 
   packages/wx-miniprogram-performance:
     dependencies:
-      zfleaves-monitor-shared:
-        specifier: workspace:^
-        version: link:../shared
-      zfleaves-monitor-type:
-        specifier: workspace:^
-        version: link:../type
-      zfleaves-monitor-utils:
-        specifier: workspace:^
-        version: link:../utils
+      zfleaves-monitor-tools:
+        specifier: 0.0.1
+        version: 0.0.1
     devDependencies:
       encode-bundle:
         specifier: ^1.4.1
@@ -1601,8 +1562,20 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
 
+  zfleaves-monitor-browser@0.0.3:
+    resolution: {integrity: sha512-TrpN+rfnAO0eUNOYMnt2rhWrx8Z7kNiD0XsoNNZmuerbKMlXWkHjEreJh2fJ5q7PnKfBGb65hstxx8WomR0C3Q==}
+
+  zfleaves-monitor-react@0.0.3:
+    resolution: {integrity: sha512-53HH23YVNRm7G47QHtty4VFVipExlD/dDvvRG9rptvmFX4ZU50VyxeIxCgRWWDfDCd6k993MY7QtIjwtyx1/Tg==}
+
   zfleaves-monitor-shared@0.0.1:
     resolution: {integrity: sha512-sLTRc2fpo6NzqUPiocXblSKAiWI4oIidKEeXYIzjscrm3l9GJMoyg1rlBIbRlWPiTFSpFdxPTv4jg6hJVV0y+g==}
+
+  zfleaves-monitor-tools@0.0.1:
+    resolution: {integrity: sha512-wxhLSlhE/16p3xuuQNqTshMKM6n0YV4YPbXgs1E7CLEaCtdA8oMkd/IimmIHeCxnH0uWZvYLyqlJokXZpcRG+w==}
+
+  zfleaves-monitor-vue@0.0.3:
+    resolution: {integrity: sha512-fDVxT5JbG5w8RTVRZC4uW8xiDzF3Bjs+trFs56hlTupACE6TG7foQd4gYw7xpQlBM2PrZQTYdyyphbicn5BCPA==}
 
 snapshots:
 
@@ -2958,4 +2931,23 @@ snapshots:
 
   yn@3.1.1: {}
 
+  zfleaves-monitor-browser@0.0.3:
+    dependencies:
+      zfleaves-monitor-shared: 0.0.1
+      zfleaves-monitor-tools: 0.0.1
+
+  zfleaves-monitor-react@0.0.3:
+    dependencies:
+      zfleaves-monitor-shared: 0.0.1
+      zfleaves-monitor-tools: 0.0.1
+
   zfleaves-monitor-shared@0.0.1: {}
+
+  zfleaves-monitor-tools@0.0.1:
+    dependencies:
+      zfleaves-monitor-shared: 0.0.1
+
+  zfleaves-monitor-vue@0.0.3:
+    dependencies:
+      zfleaves-monitor-shared: 0.0.1
+      zfleaves-monitor-tools: 0.0.1

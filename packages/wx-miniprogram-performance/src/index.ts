@@ -1,4 +1,3 @@
-import { isWxMiniEnv } from "zfleaves-monitor-utils";
 import {
     initBatteryInfo,
     initMemoryWarning,
@@ -10,6 +9,8 @@ import {
 import Store from './core/store';
 import { version } from "../package.json";
 import { WxPerformanceInitOptions } from './types/index';
+import { utils } from "zfleaves-monitor-tools";
+const { isWxMiniEnv } = utils;
 
 class WxPerformance {
     appId: string;

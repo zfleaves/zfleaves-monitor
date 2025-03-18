@@ -1,4 +1,5 @@
-import {
+import { core, utils, types } from 'zfleaves-monitor-tools';
+const {
     _global,
     on,
     off,
@@ -9,16 +10,15 @@ import {
     isExistProperty,
     variableTypeDetection,
     supportsHistory,
-} from 'zfleaves-monitor-utils';
-import {
+} = utils;
+const {
     transportData,
     options,
     setTraceId,
     triggerHandlers,
-    ReplaceHandler,
     subscribeEvent,
-} from 'zfleaves-monitor-core';
-import { EMethods, MonitorHttp, MonitorXMLHttpRequest } from 'zfleaves-monitor-type';
+} = core;
+// import { EMethods, MonitorHttp, MonitorXMLHttpRequest } from 'zfleaves-monitor-type';
 import { voidFun, EventTypes, HttpTypes, HttpCodes } from 'zfleaves-monitor-shared';
 
 /**
@@ -61,7 +61,7 @@ function replace(type: EventTypes) {
     }
 }
 
-export function addReplaceHandler(handler: ReplaceHandler) {
+export function addReplaceHandler(handler: core.ReplaceHandler) {
     if (!subscribeEvent(handler)) return;
     replace(handler.type as EventTypes);
 }
@@ -74,7 +74,7 @@ function xhrReplace(): void {
     if (!('XMLHttpRequest' in _global)) return;
     const originalXhrProto = XMLHttpRequest.prototype;
     replaceOld(originalXhrProto, 'open', (originalOpen: voidFun): voidFun => {
-        return function (this: MonitorXMLHttpRequest, ...args: any[]): void {
+        return function (this: types.MonitorXMLHttpRequest, ...args: any[]): void {
             this.monitor_xhr = {
                 method: variableTypeDetection.isString(args[0]) ? args[0].toUpperCase() : '',
                 url: args[1],
@@ -85,16 +85,16 @@ function xhrReplace(): void {
         }
     })
     replaceOld(originalXhrProto, 'send', (originalSend: voidFun): voidFun => {
-        return function (this: MonitorXMLHttpRequest, ...args: any[]): void {
+        return function (this: types.MonitorXMLHttpRequest, ...args: any[]): void {
             const { method, url } = this.monitor_xhr;
             setTraceId(url, (headerFieldName: string, traceId: string) => {
                 this.monitor_xhr.traceId = traceId;
                 this.setRequestHeader(headerFieldName, traceId);
             })
             options.beforeAppAjaxSend && options.beforeAppAjaxSend({ method, url }, this);
-            on(this, 'loadend', function (this: MonitorXMLHttpRequest) {
+            on(this, 'loadend', function (this: types.MonitorXMLHttpRequest) {
                 if (
-                    (method === EMethods.Post && transportData.isSdkTransportUrl(url)) ||
+                    (method === types.EMethods.Post && transportData.isSdkTransportUrl(url)) ||
                     isFilterHttpUrl(url)
                 )
                     return;
@@ -125,8 +125,8 @@ function fetchReplace(): void {
     replaceOld(_global, EventTypes.FETCH, (originalFetch: voidFun) => {
         return function (url: string, config: Partial<Request> = {}): void {
             const sTime = getTimestamp();
-            const method = (config && config.method).toUpperCase() || EMethods.Get;
-            let handlerData: MonitorHttp = {
+            const method = (config && config.method).toUpperCase() || types.EMethods.Get;
+            let handlerData: types.MonitorHttp = {
                 type: HttpTypes.FETCH,
                 method,
                 reqData: config && config.body,
@@ -158,7 +158,7 @@ function fetchReplace(): void {
                         time: sTime,
                     };
                     tempRes.text().then((data) => {
-                        if (method === EMethods.Post && transportData.isSdkTransportUrl(url)) return;
+                        if (method === types.EMethods.Post && transportData.isSdkTransportUrl(url)) return;
                         if (isFilterHttpUrl(url)) return;
                         handlerData.responseText = tempRes.status > HttpCodes.UNAUTHORIZED && data;
                         triggerHandlers(EventTypes.FETCH, handlerData);
@@ -167,7 +167,7 @@ function fetchReplace(): void {
                 },
                 (err: Error) => {
                     const eTime = getTimestamp();
-                    if (method === EMethods.Post && transportData.isSdkTransportUrl(url)) return;
+                    if (method === types.EMethods.Post && transportData.isSdkTransportUrl(url)) return;
                     if (isFilterHttpUrl(url)) return;
                     handlerData = {
                         ...handlerData,

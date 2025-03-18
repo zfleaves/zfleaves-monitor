@@ -1,13 +1,13 @@
-import { InitOptions } from "zfleaves-monitor-type";
-import { isWxMiniEnv } from "zfleaves-monitor-utils";
 import { setupReplace } from "./load";
-import { initOptions, log } from "zfleaves-monitor-core";
 import { sendTrackData, track } from "./initiative";
 import { SDK_NAME, SDK_VERSION } from "zfleaves-monitor-shared";
 import { MonitorVue } from "zfleaves-monitor-vue";
 import { errorBoundaryReport } from "zfleaves-monitor-react";
+import { core, utils, types } from "zfleaves-monitor-tools";
+const { initOptions, log } = core;
+const { isWxMiniEnv } = utils;
 
-export function init(options: InitOptions = {}) {
+export function init(options: types.InitOptions = {}) {
     if (!isWxMiniEnv) return;
     initOptions(options);
     setupReplace();

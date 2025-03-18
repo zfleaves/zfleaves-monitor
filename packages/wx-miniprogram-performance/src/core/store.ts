@@ -1,5 +1,4 @@
 import { noop, getDeviceId, getPageUrl } from "../utils";
-import { generateUUID, validateOption, toStringValidateOption } from 'zfleaves-monitor-utils';
 import { WxPerformanceDataType, WxPerformanceItemType } from '../constant';
 import Event from "./event";
 import {
@@ -10,6 +9,8 @@ import {
     WxPerformanceItem,
     WxPerformanceEntryObj,
 } from '../types/index';
+import { utils } from "zfleaves-monitor-tools";
+const { generateUUID, validateOption, toStringValidateOption } = utils;
 
 class Store extends Event {
     appId: string;

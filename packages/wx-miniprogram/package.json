@@ -1,6 +1,6 @@
 {
   "name": "zfleaves-monitor-wx-mini-program",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "前端稳定性监控 小程序监控",
   "main": "dist/index.global.js",
   "module": "dist/index.mjs",
@@ -26,11 +26,9 @@
     "encode-bundle": "^1.4.1"
   },
   "dependencies": {
-    "zfleaves-monitor-core": "workspace:^",
-    "zfleaves-monitor-utils": "workspace:^",
-    "zfleaves-monitor-shared": "workspace:^",
-    "zfleaves-monitor-type": "workspace:^",
-    "zfleaves-monitor-vue": "workspace:^",
-    "zfleaves-monitor-react": "workspace:^"
+    "zfleaves-monitor-tools": "0.0.1",
+    "zfleaves-monitor-shared": "0.0.1",
+    "zfleaves-monitor-vue": "0.0.3",
+    "zfleaves-monitor-react": "0.0.3"
   }
 }

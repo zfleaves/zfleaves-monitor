@@ -1,6 +1,6 @@
 {
     "name": "zfleaves-monitor-vue",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "前端稳定性监控 Vue 监控",
     "main": "dist/index.global.js",
     "module": "dist/index.mjs",
@@ -26,9 +26,7 @@
         "encode-bundle": "^1.4.1"
     },
     "dependencies": {
-        "zfleaves-monitor-core": "workspace:^",
-        "zfleaves-monitor-shared": "workspace:^",
-        "zfleaves-monitor-utils": "workspace:^",
-        "zfleaves-monitor-type": "workspace:^"
+        "zfleaves-monitor-tools": "0.0.1",
+        "zfleaves-monitor-shared": "0.0.1"
     }
 }

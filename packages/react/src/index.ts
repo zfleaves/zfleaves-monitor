@@ -1,7 +1,7 @@
 import { BreadCrumbTypes, ErrorTypes } from "zfleaves-monitor-shared";
-import { isError, extractErrorStack, Severity } from "zfleaves-monitor-utils";
-import { breadcrumb, transportData } from "zfleaves-monitor-core";
-import { ReportDataType } from "zfleaves-monitor-type";
+import { utils, core, types } from 'zfleaves-monitor-tools' ;
+const { isError, extractErrorStack, Severity } = utils;
+const { breadcrumb, transportData } = core;
 
 /**
  * 收集react ErrorBoundary中的错误对象
@@ -14,7 +14,7 @@ export function errorBoundaryReport(ex: any): void {
         console.warn('传入的react error不是一个object Error');
         return;
     }
-    const error = extractErrorStack(ex, Severity.Normal) as ReportDataType;
+    const error = extractErrorStack(ex, Severity.Normal) as types.ReportDataType;
     error.type = ErrorTypes.REACT_ERROR;
     breadcrumb.push({
         type: BreadCrumbTypes.REACT,

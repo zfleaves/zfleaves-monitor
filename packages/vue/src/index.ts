@@ -1,7 +1,8 @@
-import { getFlag, setFlag, silentConsoleScope, Severity } from "zfleaves-monitor-utils";
 import { EventTypes } from "zfleaves-monitor-shared";
 import { VueInstance, ViewModel } from "./types";
 import { handleVueError } from "./helper";
+import { utils } from "zfleaves-monitor-tools";
+const { getFlag, setFlag, silentConsoleScope, Severity } = utils;
 
 const hasConsole = typeof console !== 'undefined';
 

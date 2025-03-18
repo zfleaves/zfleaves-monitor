@@ -1,4 +1,4 @@
-import { IAnyObject } from "zfleaves-monitor-type";
+import { types } from "zfleaves-monitor-tools";
 
 export interface MiniRoute {
     from: string;
@@ -9,13 +9,13 @@ export interface MiniRoute {
 
 export interface WxOnShareAppMessageBreadcrumb {
     path: string;
-    query: IAnyObject;
+    query: types.IAnyObject;
     options: WechatMiniprogram.Page.IShareAppMessageOption;
 }
 
 export interface WxOnTabItemTapBreadcrumb {
     path: string;
-    query: IAnyObject;
+    query: types.IAnyObject;
     options: WechatMiniprogram.Page.ITabItemTapOption;
 }
 
@@ -26,5 +26,5 @@ export interface WxRequestErrorBreadcrumb {
 
 export interface WxLifeCycleBreadcrumb {
     path: string;
-    query: IAnyObject;
+    query: types.IAnyObject;
 }

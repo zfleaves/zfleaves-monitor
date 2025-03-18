@@ -1,4 +1,4 @@
-import { IAnyObject } from "zfleaves-monitor-type";
+import { types } from "zfleaves-monitor-tools";
 
 export interface VueInstance {
     config?: VueConfiguration;
@@ -45,7 +45,7 @@ export interface ViewModel {
         /**
          * 传递给组件 props 的可选数据（特定于 Vue 2.6）。
          */
-        propsData?: IAnyObject;
+        propsData?: types.IAnyObject;
         /**
          * 组件的可选标签名。
          */
@@ -57,7 +57,7 @@ export interface ViewModel {
         /**
          * 定义组件 props 的可选对象。
          */
-        props?: IAnyObject;
+        props?: types.IAnyObject;
     };
     /**
      * 包含传递给组件的所有 props 的对象。

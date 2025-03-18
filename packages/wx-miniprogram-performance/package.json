@@ -1,6 +1,6 @@
 {
   "name": "zfleaves-monitor-wx-mini-program-performance",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "前端稳定性监控 小程序性能监控",
   "main": "dist/index.global.js",
   "module": "dist/index.mjs",
@@ -27,8 +27,6 @@
     "encode-bundle": "^1.4.1"
   },
   "dependencies": {
-    "zfleaves-monitor-utils": "workspace:^",
-    "zfleaves-monitor-shared": "workspace:^",
-    "zfleaves-monitor-type": "workspace:^"
+    "zfleaves-monitor-tools": "0.0.1"
   }
 }

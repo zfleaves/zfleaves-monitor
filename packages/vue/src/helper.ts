@@ -1,25 +1,24 @@
-import {
+import { utils, core, types } from "zfleaves-monitor-tools";
+import { ErrorTypes, BreadCrumbTypes } from "zfleaves-monitor-shared";
+import { ViewModel, VueInstance } from "./types";
+const {
     getBigVersion,
     getLocationHref,
     getTimestamp,
     variableTypeDetection,
-    Severity
-} from "zfleaves-monitor-utils";
-import { ErrorTypes, BreadCrumbTypes } from "zfleaves-monitor-shared";
-import { ViewModel, VueInstance } from "./types";
-import { breadcrumb, transportData } from "zfleaves-monitor-core";
-import { ReportDataType } from "zfleaves-monitor-type";
+} = utils;
+const { breadcrumb, transportData } = core;
 
 export function handleVueError(
     err: Error,
     vm: ViewModel,
     info: string,
-    level: Severity,
-    breadcrumbLevel: Severity,
+    level: utils.Severity,
+    breadcrumbLevel: utils.Severity,
     Vue: VueInstance
 ): void {
     const version = Vue?.version;
-    let data: ReportDataType = {
+    let data: types.ReportDataType = {
         type: ErrorTypes.VUE_ERROR,
         message: `${err.message}(${info})`,
         level: level,
@@ -84,20 +83,20 @@ function vue2VmHandler(vm: ViewModel) {
         // 组件名称
         componentName,
         // 从 $options 中获取的 props 数据，如果 $options 存在则返回 propsData，否则返回 undefined
-        propsData: vm.$options && vm.$options.propsData, 
+        propsData: vm.$options && vm.$options.propsData,
     }
 }
 
 function vue3VmHandler(vm: ViewModel) {
     let componentName = '';
     if (vm.$root === vm) {
-       componentName = 'root'; 
+        componentName = 'root';
     } else {
-       const name = vm.$options && vm.$options.name;
-       componentName = name ? 'component <' + name + '>' : 'anonymous component';
+        const name = vm.$options && vm.$options.name;
+        componentName = name ? 'component <' + name + '>' : 'anonymous component';
     }
     return {
         componentName,
-        propsData: vm.$props, 
+        propsData: vm.$props,
     }
 }

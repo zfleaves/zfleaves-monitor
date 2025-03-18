@@ -1,8 +1,9 @@
-import { replaceOld, isEmptyObject } from "zfleaves-monitor-utils";
 import Store from '../core/store';
 import HandleEvents from './handleEvents';
 import { WxPerformanceItemType, WxListenerTypes } from '../constant';
 import { WxPerformanceAnyObj } from '../types/index';
+import { utils } from "zfleaves-monitor-tools";
+const { replaceOld, isEmptyObject } = utils;
 
 /**
  * 替换原生的 App 函数，用于注入性能监控逻辑

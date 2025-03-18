@@ -1,12 +1,4 @@
 import {
-    options as sdkOptions,
-    ReplaceHandler,
-    setTraceId,
-    subscribeEvent,
-    transportData,
-    triggerHandlers,
-} from "zfleaves-monitor-core";
-import {
     WxAppEvents,
     WxPageEvents,
     WxRouterEvents,
@@ -15,7 +7,19 @@ import {
     HttpTypes,
     voidFun,
 } from "zfleaves-monitor-shared";
-import {
+import { getNavigateBackTargetUrl } from './utils';
+import { EListenerTypes } from './constant';
+import { MiniRoute } from './types';
+import { HandleWxAppEvents, HandleWxPageEvents } from './handleWxEvents';
+import { core, utils, types } from "zfleaves-monitor-tools";
+const {
+    options: sdkOptions,
+    setTraceId,
+    subscribeEvent,
+    transportData,
+    triggerHandlers,
+} = core;
+const {
     getTimestamp,
     replaceOld,
     throttle,
@@ -23,12 +27,7 @@ import {
     isEmptyObject,
     variableTypeDetection,
     getCurrentRoute,
-} from 'zfleaves-monitor-utils';
-import { HandleWxAppEvents, HandleWxPageEvents } from './handleWxEvents';
-import { MonitorHttp, EMethods } from 'zfleaves-monitor-type';
-import { getNavigateBackTargetUrl } from './utils';
-import { EListenerTypes } from './constant';
-import { MiniRoute } from './types';
+} = utils;
 
 function isFilterHttpUrl(url: string) {
     return sdkOptions.filterXhrUrlRegExp && sdkOptions.filterXhrUrlRegExp.test(url);
@@ -49,7 +48,8 @@ function replace(type: WxEvents | EventTypes) {
     }
 }
 
-export function addReplaceHandler(handler: ReplaceHandler) {
+
+export function addReplaceHandler(handler: core.ReplaceHandler) {
     if (!subscribeEvent(handler)) return;
     replace(handler.type as WxEvents);
 }
@@ -215,7 +215,7 @@ export function replaceBehavior() {
     Behavior = function (behaviorOptions) {
         if (!isEmptyObject(behaviorOptions.methods)) {
             /*
-             * 当使用Compnent直接构造页面时，用到的behavior中如果有onShow等页面生命周期函数是不会被触发的，所以只用监听手势行为
+             * 当使用Component直接构造页面时，用到的behavior中如果有onShow等页面生命周期函数是不会被触发的，所以只用监听手势行为
              */
             replaceAction(behaviorOptions.methods);
         }
@@ -315,16 +315,16 @@ export function replaceNetwork() {
                 if ((options as WechatMiniprogram.RequestOption).method) {
                     method = (options as WechatMiniprogram.RequestOption).method;
                 } else if (hook === 'downloadFile') {
-                    method = EMethods.Get;
+                    method = types.EMethods.Get;
                 } else {
-                    method = EMethods.Post;
+                    method = types.EMethods.Post;
                 }
                 const { url } = options;
                 let { header } = options;
                 !header && (header = {});
 
                 if (
-                    (method === EMethods.Post && transportData.isSdkTransportUrl(url)) ||
+                    (method === types.EMethods.Post && transportData.isSdkTransportUrl(url)) ||
                     isFilterHttpUrl(url)
                 ) {
                     return originRequest.call(this, options);
@@ -344,7 +344,7 @@ export function replaceNetwork() {
                         name: (options as WechatMiniprogram.UploadFileOption).name,
                     };
                 }
-                const data: MonitorHttp = {
+                const data: types.MonitorHttp = {
                     type: HttpTypes.XHR,
                     method,
                     url,

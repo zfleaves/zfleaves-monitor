@@ -1,5 +1,5 @@
-import { setUrlQuery, variableTypeDetection } from "zfleaves-monitor-utils";
-import { DeviceInfo } from "zfleaves-monitor-type";
+import { utils, types } from "zfleaves-monitor-tools";
+const { setUrlQuery, variableTypeDetection } = utils;
 
 /**
  * 获取页面返回时的目标 URL
@@ -37,7 +37,7 @@ export function targetAsString(e: WechatMiniprogram.BaseEvent): string {
  * 获取微信小程序的设备信息
  * @returns 返回一个 Promise，该 Promise 解析为一个包含设备信息的对象
  */
-export async function getWxMiniDeviceInfo(): Promise<DeviceInfo> {
+export async function getWxMiniDeviceInfo(): Promise<types.DeviceInfo> {
     // 同步获取系统信息，提取像素比、屏幕高度和屏幕宽度
     const { pixelRatio, screenHeight, screenWidth } = wx.getSystemInfoSync();
     // 异步获取微信小程序的网络类型

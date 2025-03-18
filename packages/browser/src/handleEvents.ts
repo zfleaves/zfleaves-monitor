@@ -1,12 +1,7 @@
 import { BreadCrumbTypes, ErrorTypes, ERROR_TYPE_RE, HttpCodes } from 'zfleaves-monitor-shared';
-import {
-    transportData,
-    breadcrumb,
-    resourceTransform,
-    httpTransform,
-    options,
-} from 'zfleaves-monitor-core';
-import {
+import { core, utils, types } from 'zfleaves-monitor-tools';
+const { transportData, breadcrumb, resourceTransform, httpTransform, options } = core;
+const {
     getLocationHref,
     getTimestamp,
     isError,
@@ -14,16 +9,13 @@ import {
     extractErrorStack,
     unknownToString,
     Severity,
-} from 'zfleaves-monitor-utils';
-import { ReportDataType, Replace, MonitorHttp, ResourceErrorTarget } from 'zfleaves-monitor-type';
-import { url } from 'inspector';
-
+} = utils;
 
 const HandleEvents = {
     /**
       * 处理xhr、fetch回调
       */
-    handleHttp(data: MonitorHttp, type: BreadCrumbTypes): void {
+    handleHttp(data: types.MonitorHttp, type: BreadCrumbTypes): void {
         const isError =
             data.status === 0 ||
             data.status === HttpCodes.BAD_REQUEST ||
@@ -54,7 +46,7 @@ const HandleEvents = {
      * 以及资源加载失败（如图片、脚本文件加载失败）
      */
     handleError(errorEvent: ErrorEvent) {
-        const target = errorEvent.target as ResourceErrorTarget;
+        const target = errorEvent.target as types.ResourceErrorTarget;
         if (target.localName) {
             const data = resourceTransform(target);
             breadcrumb.push({
@@ -66,7 +58,7 @@ const HandleEvents = {
             return transportData.send(data);
         }
         const { message, filename, lineno, colno, error } = errorEvent;
-        let result: ReportDataType;
+        let result: types.ReportDataType;
         if (error && isError(error)) {
             result = extractErrorStack(error, Severity.Normal);
         }
@@ -108,7 +100,7 @@ const HandleEvents = {
         }
     },
 
-    handleHistory(data: Replace.IRouter) {
+    handleHistory(data: types.Replace.IRouter) {
         const { from, to } = data;
         const { relative: parsedFrom } = parseUrlToObj(from);
         const { relative: parsedTo } = parseUrlToObj(to);
@@ -155,7 +147,7 @@ const HandleEvents = {
      * 当一个 Promise 被拒绝（rejected），但没有相应的 .catch() 方法来处理这个拒绝时，就会触发该事件。
      */
     handleUnhandledrejection(ev: PromiseRejectionEvent) {
-        let data: ReportDataType = {
+        let data: types.ReportDataType = {
             type: ErrorTypes.PROMISE_ERROR,
             message: unknownToString(ev.reason),
             url: getLocationHref(),

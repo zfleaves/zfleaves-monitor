@@ -1,7 +1,8 @@
 import { HandleEvents } from "./handleEvents";
-import { htmlElementAsString, Severity } from "zfleaves-monitor-utils";
 import { EventTypes, BreadCrumbTypes } from "zfleaves-monitor-shared";
-import { breadcrumb, handleConsole } from "zfleaves-monitor-core";
+import { core, utils } from 'zfleaves-monitor-tools';
+const  { htmlElementAsString, Severity } = utils;
+const { breadcrumb, handleConsole } = core;
 import { addReplaceHandler } from "./replace";
 
 export function setupReplace(): void {
