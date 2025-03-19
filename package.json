@@ -6,7 +6,7 @@
     "preinstall": "npx only-allow pnpm",
     "clean": "pnpm -r --filter=./packages/* run clean",
     "init": "pnpm install",
-    "demo": "cross-env NODE_ENV=demo ts-node ./examples/server/index.ts",
+    "demo": "pnpm run build && cross-env NODE_ENV=demo ts-node ./examples/server/index.ts",
     "build": "pnpm run init && pnpm -r --filter=./packages/* run build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
     "pub": "pnpm run build && pnpm -r --filter=./packages/* publish",
