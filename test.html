@@ -43,6 +43,20 @@
         }
         traverse('.root');
     </script>
+    <script>
+        const promise = new Promise((resolve, reject) => {
+            console.log(1);
+            resolve();
+        });
+        promise.then(() => {
+            console.log(2);
+        }, () => {
+            console.log(3);
+        }).catch(() => {
+            console.log(4); 
+        })
+        console.log(5);
+    </script>
 </body>
 
 </html>

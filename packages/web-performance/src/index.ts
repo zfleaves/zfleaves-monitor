@@ -38,6 +38,7 @@ let reporter: ReturnType<typeof createReporter>;
 
 class WebVitals implements IWebVitals {
     immediately: boolean;
+    private poorScoreThreshold: number;
     /**
      * 构造函数，初始化 WebVitals 实例
      * @param config - 配置对象，包含性能指标收集和报告所需的各种参数
@@ -56,10 +57,13 @@ class WebVitals implements IWebVitals {
             excludeRemotePath = [], // 排除的远程路径数组
             maxWaitCCPDuration = 30 * 1000, // 最大等待关键内容绘制的持续时间，默认为 30 秒
             scoreConfig = {}, // 计算指标得分的配置对象
+            poorScoreThreshold = 60, // 定义评分较差的阈值，默认为60
         } = config;
     
         // 将是否立即报告的配置赋值给实例属性
         this.immediately = immediately;
+        // 设置评分较差的阈值
+        this.poorScoreThreshold = poorScoreThreshold;
     
         // 生成唯一的会话 ID
         const sessionId = generateUniqueID();
@@ -186,6 +190,36 @@ class WebVitals implements IWebVitals {
     clearMark(markName: string) {
         clearMark(`${markName}_start`);
         clearMark(`${markName}_end`);
+    }
+
+    /**
+     * 获取所有评分较差的性能指标
+     * @returns {IMetricsObj} 评分较差的性能指标对象
+     */
+    getPoorMetrics(): IMetricsObj {
+        const allMetrics = this.getCurrentMetrics();
+        const poorMetrics: IMetricsObj = {};
+        
+        // 遍历所有指标，筛选出评分较差的指标
+        Object.entries(allMetrics).forEach(([key, metrics]) => {
+            if (metrics.score !== undefined && metrics.score < this.poorScoreThreshold) {
+                poorMetrics[key] = metrics;
+            }
+        });
+        
+        return poorMetrics;
+    }
+
+    /**
+     * 手动上报评分较差的性能指标
+     */
+    reportPoorMetrics(): void {
+        const poorMetrics = this.getPoorMetrics();
+        
+        // 如果存在评分较差的指标，则进行上报
+        if (Object.keys(poorMetrics).length > 0) {
+            reporter(poorMetrics);
+        }
     }
     /**
      * 触发自定义内容绘制事件

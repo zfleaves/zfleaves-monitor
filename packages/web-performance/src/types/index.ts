@@ -12,6 +12,7 @@ export interface IConfig {
     excludeRemotePath?: Array<string>;
     maxWaitCCPDuration: number;
     scoreConfig?: IScoreConfig;
+    poorScoreThreshold?: number; // 定义评分较差的阈值，默认为60
 }
 
 export interface IPerformanceNavigationTiming {
@@ -77,6 +78,8 @@ export interface IWebVitals {
     setEndMark(markName: string): void;
     clearMark(markName: string): void;
     customContentfulPaint(customMetricName: string): void;
+    reportPoorMetrics(): void; // 手动上报评分较差的指标
+    getPoorMetrics(): IMetricsObj; // 获取评分较差的指标
 }
 
 export interface IReportHandler {
