@@ -1,6 +1,6 @@
 {
     "name": "zfleaves-monitor-web-performance",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "前端稳定性监控 Web 性能监控",
     "main": "dist/index.global.js",
     "module": "dist/index.mjs",
